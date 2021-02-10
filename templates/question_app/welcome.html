@@ -1,0 +1,112 @@
+{% extends "basic.html" %}
+{% block body_block %}
+<style media="screen">
+  table, th, td {
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+</style>
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+      <h1 class="display-4">Welcome to iNeon {{user.first_name}} {{user.last_name}}.</h1>
+      {% if user.is_authenticated %}
+      <br>
+      <p class="lead">Congratulations, You have completed your Registration process and now can start giving Test, and please share your experience with us.</p>
+</div>
+        <div class="card-deck mb-3 text-center">
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h5 class="my-0 font-weight-normal">Professional Profile</h5>
+            </div>
+            <div class="card-body">
+              <div class="progress">
+                <div class="progress-bar" style="width: {{user_info.Prfoile_verification_filled}}%;" role="progressbar" aria-valuenow=" {{user_info.Prfoile_verification_filled}}" aria-valuemin="0" aria-valuemax="100"> {{user_info.Prfoile_verification_filled}}%</div>
+              </div>
+              <br>
+              <a class="btn btn-lg btn-normal btn-outline-primary" href="{% url 'profile_update' pk=user_info.pk  %}">Fill Details</a>
+            </div>
+          </div>
+          <div class="card mb-4 box-shadow" >
+            <div class="card-header">
+              <h5 class="my-0 font-weight-normal">Education Profile</h5>
+            </div>
+            <div class="card-body">
+              <div class="progress">
+                <div class="progress-bar" style="width: {{user_info.education_filled}}%;" role="progressbar" aria-valuenow="{{user_info.education_filled}}" aria-valuemin="0" aria-valuemax="100">{{user_info.education_filled}}%</div>
+              </div>
+              <br>
+              <a class="btn btn-lg btn-normal btn-outline-primary" href="{% url 'education_update' pk=user_info.pk %}">Fill Details</a>
+            </div>
+          </div>
+          <div class="card mb-4 box-shadow">
+            <div class="card-header">
+              <h5 class="my-0 font-weight-normal">Skills Profile</h5>
+            </div>
+            <div class="card-body">
+              <div class="progress">
+                <div class="progress-bar" style="width: {{user_info.Skills_filled}}%;" role="progressbar" aria-valuenow="{{user_info.Skills_filled}}" aria-valuemin="0" aria-valuemax="100">{{user_info.Skills_filled}}%</div>
+              </div>
+              <br>
+              <a class="btn btn-lg btn-normal btn-outline-primary" href="{% url 'skills_update' %}">Fill Details</a>
+            </div>
+          </div>
+        </div>
+
+      {% else %}
+      <div class="card-deck mb-3 text-center " >
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Register for Free</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Select Course: </h1>
+            <select class="form-control form-control-lg">
+              <option >School 10th Class</option>
+              <option >School 12th/Diploma Class</option>
+              <option >Graduation</option>
+              <option >Post Graduation</option>
+              <option >Doctorate</option>
+            </select>
+            <br>
+            <a class="btn btn-lg btn-normal btn-outline-primary" href="{% url 'question_app:register' %}">Sign up for free</a>
+          </div>
+        </div>
+      </div>
+      <br>
+      <center><h4 class="lead" style="color:red;">Please Login or Register for using our Test Series</h4></center>
+
+      {% endif %}
+      <br>
+      {% if user.is_authenticated %}
+      <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"">
+        <h3><strong>Tests for You:</strong> </h3>
+
+
+        <table >
+          <tr >
+          {% for test in ti %}
+            <td class="mb-4">
+              <h4>In {{ test.Test_name }} for the {{ test.Position }}. </h4>
+                <a href="{% url 'description' pk=test.pk %}" class="btn btn-primary" >{{test.Test_name}} : {{test.Position}}</a>
+
+            </td>
+
+          {% endfor %}
+          </tr>
+        </table>
+
+      </div>
+      {% endif %}
+
+
+<div class="container">
+
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <p class="lead">We welcome you to our Free Test-Series website.
+      Created with <img src="static/heart.png" alt="Love" style="height:20px;widt:20px;"> by iNeon Solutions
+    </p>
+  </div>
+</div>
+{% endblock %}

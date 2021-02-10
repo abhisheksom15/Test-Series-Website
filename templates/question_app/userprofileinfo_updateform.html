@@ -1,0 +1,42 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body_block %}
+
+
+<div class="jumbotron">
+  {% if user.is_authenticated %}
+  <h2>Update Details:</h2>
+  <center>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <style media="screen">
+      .errorlist
+    {
+        color: red;
+    }
+    .error input, .error select {
+    border: 2px red solid;
+    }
+    </style>
+    {% if form.Last_Highest_Education %}
+    <p class="lead"> Please enter your Education details </p>
+    {% elif form.Main_Hobbies %}
+    <p class="lead"> Tell us what are you good at </p>
+    {% else %}
+    <p class="lead"> Please Enter following details related to your Profile </p>
+    {% endif %}
+    <table >
+    {{ form.as_table }}
+    </table>
+    <br>
+    <input type="submit" name="" value="Register" class="btn btn-primary btn-lg">
+  </form>
+  </center>
+  {% else %}
+
+  <center>
+  <h3 class="lead" style="color:red;">Please Register First.</h3>
+
+  {% endif %}
+</div>
+{% endblock %}

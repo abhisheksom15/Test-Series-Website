@@ -1,0 +1,40 @@
+{% extends 'basic.html' %}
+{% block body_block %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0//bootstrap-tagsinput.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput.css">
+<div class="jumbotron">
+  <form method="post">
+    {% csrf_token %}
+    <center>
+
+    <h1>Enter Your Skills</h1>
+    <table>
+      {{ form.as_table }}
+    </table>
+    <br>
+    <input type="submit" name="" value="Update" class="btn btn-success">
+
+    </center>
+
+  </form>
+
+</div>
+<table class="table">
+  <thead>
+   <tr>
+     <th scope="col">Skill</th>
+     <th scope="col">Level</th>
+   </tr>
+ </thead>
+  {% for skill in all_skills %}
+    <tr>
+      <td>{{ skill.skills }}</td>
+    <td>
+      {{ skill.level }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}

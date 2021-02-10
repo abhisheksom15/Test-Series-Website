@@ -1,0 +1,23 @@
+{% extends 'basic.html' %}
+{% block body_block %}
+{% load static %}
+
+<h1 class="bg-success"><center>Test :<strong> {{Test.Test_name}}</strong></center></h1>
+<h5 class="bg-warning"><center><strong>For {{Test.Position}} Post</strong></center></h5>
+<div class="jumbotron">
+
+  <form method="POST" action="{% url 'question_test' count=count user_pk=user.pk test_pk=Test.pk %}">
+
+    {% csrf_token %}
+    <label for="question">Answer this question {{user.first_name}} !!!</label>
+    <br>
+    <h3>Question : <strong>{{ question.Question }}</strong></h3>
+    <input type="radio" name="Answer" value="A"><label for="question"> <p>&nbsp;A. {{ question.Option_A }}</p></label><br>
+    <input type="radio" name="Answer" value="B"><label for="question"><p>&nbsp;B. {{ question.Option_B }}</p></label><br>
+    <input type="radio" name="Answer" value="C"><label for="question"> <p>&nbsp;C. {{ question.Option_C }}</p></label><br>
+    <input type="radio" name="Answer" value="D"><label for="question"> <p>&nbsp;D. {{ question.Option_D }}</p></label><br>
+    <br>
+    <input type="submit" name="" value="Next" class="btn btn-success">
+  </form>
+</div>
+{% endblock %}

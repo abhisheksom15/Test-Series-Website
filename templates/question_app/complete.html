@@ -1,0 +1,14 @@
+{% extends 'basic.html' %}
+{% block body_block %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <center><h1>Successfully Submited !!!</h1>
+  <center>
+  <a href="{% url 'welcome' %}" class="btn btn-primary">Home</a>
+  &nbsp;
+  <a href="{% url 'logout' %}">Logout</a>
+  </center>
+</div>
+
+
+
+{% endblock %}

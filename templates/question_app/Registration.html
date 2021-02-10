@@ -1,0 +1,36 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body_block %}
+<div class="jumbotron">
+  {% if registered %}
+  <h1>Thank you for Registration!</h1>
+  <h4>go to login for sign in and for next stage</h4>
+  {% elif user.is_authenticated %}
+  <h2>You are Already registered on iNeon Dude!, Don't try to do these simple test because website is build with lot of advance engineering tools and advance engineering technology.</h2>
+  {% else %}
+
+  <center>
+  <h1>Registration Form</h1>
+  <h3 class="lead">Fill up the Sign up details and then click on register button:</h3>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <style media="screen">
+      .errorlist
+    {
+        color: red;
+    }
+    .error input, .error select {
+    border: 2px red solid;
+    }
+    </style>
+    <table >
+    {{ user_form.as_table }}
+    {{ profile_form.as_table }}
+    </table>
+    <br>
+    <input type="submit" name="" value="Register" class="btn btn-primary btn-lg">
+  </form>
+  </center>
+  {% endif %}
+</div>
+{% endblock %}

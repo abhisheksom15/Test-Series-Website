@@ -1,0 +1,31 @@
+{% extends 'basic.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Results,</h1>
+  <p>Please, find your reslt in the below section. The cut-off for the section is 75 marks below 75 will not be allowed for the next round.</p>
+</div>
+<h1><center>Result: <strong> {{company.Company_name}} </strong> </center></h1>
+<h5><center>For <strong>  {{company.Position}} Post </strong> </center></h5>
+<br>
+
+<table class="table table-striped">
+  <th>Candidate Username</th>
+  <th>Marks</th>
+  <th>Result</th>
+  {% for candidate in cm %}
+  <tr>
+    <td><strong>{{candidate.user_name}}</strong></td>
+    <td>{{candidate.cm_marks}}</td>
+    {% if candidate.cm_marks >= 75  %}
+    <td>Pass</td>
+    {% else %}
+    <td>Fail</td>
+    {% endif %}
+
+
+  </tr>
+  {% endfor %}
+</table>
+
+
+{% endblock %}
